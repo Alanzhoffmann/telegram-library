@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30105.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelegramLibrary.App", "TelegramLibrary.App\TelegramLibrary.App.csproj", "{8968C341-8667-46CB-8A25-46BE9425DF22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleClient", "ConsoleClient\ConsoleClient.csproj", "{4946EF13-21A2-40D1-A917-C402B5B2D1ED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8968C341-8667-46CB-8A25-46BE9425DF22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8968C341-8667-46CB-8A25-46BE9425DF22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8968C341-8667-46CB-8A25-46BE9425DF22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8968C341-8667-46CB-8A25-46BE9425DF22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4946EF13-21A2-40D1-A917-C402B5B2D1ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4946EF13-21A2-40D1-A917-C402B5B2D1ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4946EF13-21A2-40D1-A917-C402B5B2D1ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4946EF13-21A2-40D1-A917-C402B5B2D1ED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {51C54DC0-2161-4FAB-BFDD-8E3BBD30F05C}
+	EndGlobalSection
+EndGlobal
