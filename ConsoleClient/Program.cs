@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using TelegramLibrary.App;
 
@@ -6,35 +7,56 @@ namespace ConsoleClient
 {
     internal class Program
     {
+        // Essas propriedades vem de https://my.telegram.org/
+        private const int ApiId = 0;
+
+        private const string AppHash = "";
+
         private static async Task Main(string[] args)
         {
-            Console.Write("Enter phone number: ");
-            var phoneNumber = Console.ReadLine().Trim();
-            var client = new Client(phoneNumber);
+            Console.Write("Digite o seu número de telefone (+5547999999999): ");
+            var telefone = Console.ReadLine().Trim();
 
+            var client = new Client(ApiId, AppHash, telefone);
+
+            // Aqui são registrados os eventos para autorização
             client.OnAskUserCode += Client_OnAskUserCode;
             client.OnAskUserPassword += Client_OnAskUserPassword;
 
             await client.ConnectAsync();
-            await client.AuthenticateAsync();
+            Console.WriteLine($"Bem vindo @{client.Username}");
 
-            var contacts = await client.GetUsersAsync();
-            foreach (var i in contacts)
+            // identificador
+            // Aqui pode ser o nome de usuário, nome de grupo ou número de telefone "+5547999999999"
+            //var identificador = "";
+            var identificador = new[] { "" };
+
+            // Envio de mensagem
+            await client.SendMessageAsync("testando", identificador);
+
+            // Envio de imagem
+            // Qualquer imagem pode ser enviada por aqui com um StreamReader
+            var fileName = "image.png";
+            using (var file = new FileStream(fileName, FileMode.Open))
             {
-                Console.WriteLine(i.ToString());
+                using (var streamReader = new StreamReader(file))
+                {
+                    await client.SendImageAsync(fileName, streamReader, identificador, fileName);
+                }
             }
+
             Console.ReadKey();
         }
 
-        private static string Client_OnAskUserCode(object sender, Client.PhoneNumberArgs args)
+        private static string Client_OnAskUserCode(object sender, PhoneNumberArgs args)
         {
-            Console.Write($"Enter code sent to {args.PhoneNumber}: ");
+            Console.Write($"Digite o código enviado para {args.PhoneNumber}: ");
             return Console.ReadLine().Trim();
         }
 
-        private static string Client_OnAskUserPassword(object sender, Client.PhoneNumberArgs args)
+        private static string Client_OnAskUserPassword(object sender, PhoneNumberArgs args)
         {
-            Console.Write($"Enter password for {args.PhoneNumber}: ");
+            Console.Write($"Digite a senha para {args.PhoneNumber}: ");
             return Console.ReadLine().Trim();
         }
     }
