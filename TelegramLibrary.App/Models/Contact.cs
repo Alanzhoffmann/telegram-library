@@ -1,4 +1,5 @@
-﻿using TeleSharp.TL;
+﻿using System;
+using TeleSharp.TL;
 
 namespace TelegramLibrary.App.Models
 {
@@ -8,17 +9,17 @@ namespace TelegramLibrary.App.Models
         {
             if (string.IsNullOrWhiteSpace(phone))
             {
-                throw new System.ArgumentException("Telefone obrigatório", nameof(phone));
+                throw new ArgumentException($"Telefone obrigatório no contato {this}", nameof(phone));
             }
 
             if (string.IsNullOrWhiteSpace(firstName))
             {
-                throw new System.ArgumentException("Primeiro nome obrigatório", nameof(firstName));
+                throw new ArgumentException($"Primeiro nome obrigatório no contato {this}", nameof(firstName));
             }
 
             if (string.IsNullOrWhiteSpace(lastName))
             {
-                throw new System.ArgumentException("Sobrenome obrigatório", nameof(lastName));
+                throw new ArgumentException($"Sobrenome obrigatório no contato {this}", nameof(lastName));
             }
 
             Phone = phone;
@@ -29,6 +30,11 @@ namespace TelegramLibrary.App.Models
         public string Phone { get; }
         public string FirstName { get; }
         public string LastName { get; }
+
+        public override string ToString()
+        {
+            return $"{Phone}: {FirstName} {LastName}";
+        }
 
         internal TLInputPhoneContact ToTlContact()
         {

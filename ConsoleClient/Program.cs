@@ -17,19 +17,20 @@ namespace ConsoleClient
             Console.Write("Digite o seu número de telefone (+5547999999999): ");
             var telefone = Console.ReadLine().Trim();
 
-            var client = new Client(ApiId, AppHash, telefone);
+            var client = ClientFactory.Build(ApiId, AppHash, telefone);
 
             // Aqui são registrados os eventos para autorização
             client.OnAskUserCode += Client_OnAskUserCode;
             client.OnAskUserPassword += Client_OnAskUserPassword;
 
             await client.ConnectAsync();
+
             Console.WriteLine($"Bem vindo @{client.Username}");
 
             // identificador
             // Aqui pode ser o nome de usuário, nome de grupo ou número de telefone "+5547999999999"
             //var identificador = "";
-            var identificador = new[] { "" };
+            var identificador = "aaa";
 
             // Envio de mensagem
             await client.SendMessageAsync("testando", identificador);
