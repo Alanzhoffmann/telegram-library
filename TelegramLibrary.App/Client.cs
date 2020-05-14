@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using TelegramLibrary.App.Extensions;
 using TelegramLibrary.App.Internal;
 using TelegramLibrary.App.Models;
 using TeleSharp.TL;
@@ -58,7 +59,7 @@ namespace TelegramLibrary.App
             {
                 var contact = await ContactStore.GetContact(identification);
 
-                await _client.SendMessageAsync(contact, message);
+                await _client.SendMarkdownMessageAsync(contact, message);
             }
             catch (Exception ex)
             {
@@ -74,7 +75,7 @@ namespace TelegramLibrary.App
                 var contacts = await ContactStore.GetContact(identifications);
                 foreach (var contact in contacts)
                 {
-                    await _client.SendMessageAsync(contact, message);
+                    await _client.SendMarkdownMessageAsync(contact, message);
                 }
             }
             catch (Exception ex)
